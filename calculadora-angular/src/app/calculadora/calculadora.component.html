@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+
+      <div class="card shadow">
+        <div class="card-header text-center text-white">
+          Calculadora
+        </div>
+
+        <div class="card-body">
+          <!-- Pantalla -->
+          <input
+            type="text"
+            class="form-control text-end mb-3"
+            [(ngModel)]="pantalla"
+            disabled
+          />
+
+          <!-- Botones -->
+          <div *ngFor="let fila of dividirBotones(bottons, 4)" class="d-flex justify-content-between mb-2">
+            <button
+              *ngFor="let boton of fila"
+              class="btn"
+              [ngClass]="{
+                'btn-danger': boton === 'AC',
+                'btn-success': boton === '=',
+                'btn-secondary': ['+', '-', '*', '/'].includes(boton),
+                'btn-outline-dark': !['AC', '=', '+', '-', '*', '/'].includes(boton),
+                'zero': boton === '0'
+              }"
+              (click)="presionarBoton(boton)"
+            >
+              {{ boton }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
